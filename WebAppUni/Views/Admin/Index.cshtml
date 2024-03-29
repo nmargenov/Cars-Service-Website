@@ -1,0 +1,73 @@
+﻿@using WebAppUni.Entities
+@model WebAppUni.ViewModels.Admin.IndexVM
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "Users";
+    User loggedUser = (User)Session["loggedUser"];
+}
+<link rel="stylesheet" href="~/Styles/table-style.css">
+
+
+<div class="table-box">
+    <a class="new-item" href="/Admin/CreateUser">Create User</a>
+    <div class="table-row table-head">
+        <div class="table-cell first-cell">
+            <p>Username</p>
+        </div>
+        <div class="table-cell">
+            <p>First Name</p>
+        </div>
+        <div class="table-cell">
+            <p>Last Name</p>
+        </div>
+        <div class="table-cell">
+            <p>Role</p>
+        </div>
+        <div class="table-cell">
+            <p>Action</p>
+        </div>
+    </div>
+
+    @foreach (User user in Model.Users)
+    {
+        <div class="table-row">
+            <div class="table-cell first-cell">
+                <p>@user.Username</p>
+            </div>
+            <div class="table-cell">
+                <p>@user.FirstName</p>
+            </div>
+            <div class="table-cell">
+                <p>@user.LastName</p>
+            </div>
+            <div class="table-cell">
+                <p>@user.Role</p>
+            </div>
+            <div class="table-cell">
+                @if (user.Role == WebAppUni.Entities.User.PermissionLevel.Admin)
+                {
+                    <a class="butt" href="/Admin/MakeUser?id=@user.Id"
+                       onclick="return confrim('Are you sure you want to make @user.Username with id: @user.Id user?')">Make User</a>
+                    <a class="butt" href="/Admin/MakeEmployee?id=@user.Id"
+                       onclick="return confrim('Are you sure you want to make @user.Username with id: @user.Id employee?')">Make Employee </a>
+                }
+                @if (user.Role == WebAppUni.Entities.User.PermissionLevel.Employee)
+                {
+                    <a class="butt" href="/Admin/MakeUser?id=@user.Id"
+                       onclick="return confrim('Are you sure you want to make @user.Username with id: @user.Id user?')">Make User</a>
+                    <a class="butt" href="/Admin/MakeAdmin?id=@user.Id"
+                       onclick="return confrim('Are you sure you want to make @user.Username with id: @user.Id Admin?')">Make Admin</a>
+                }@if (user.Role == WebAppUni.Entities.User.PermissionLevel.User)
+                {
+                    <a class="butt" href="/Admin/MakeEmployee?id=@user.Id"
+                       onclick="return confrim('Are you sure you want to make @user.Username with id: @user.Id employee?')">Make Employee </a>
+                    <a class="butt" href="/Admin/MakeAdmin?id=@user.Id"
+                       onclick="return confrim('Are you sure you want to make @user.Username with id: @user.Id Admin?')">Make Admin</a>
+                }
+                <a class="butt" href="/Admin/Edit?id=@user.Id">Edit</a>
+                <a class="butt" href="/Admin/Delete?id=@user.Id"
+                   onclick="return confrim('Are you sure you want to delete @user.Username with id: @user.Id?')">Delete</a>
+            </div>
+        </div>
+    }
+</div>

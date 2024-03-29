@@ -1,0 +1,75 @@
+﻿.site-header {
+    background-color: rgb(124, 123, 123);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+a:active{
+    color: black;
+}
+
+.site-name {
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Impact;
+}
+
+.middle-section {
+    display: flex;
+    align-items: center;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.page {
+    background-color: rgb(230, 230, 230);
+    border: none;
+    font-weight: bold;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
+    margin: 0 3px;
+}
+
+.page:hover {
+        transition: all 0.15s;
+        cursor: pointer;
+        background-color: rgb(190, 188, 188);
+}
+
+.page:active {
+        opacity: 0.6;
+}
+
+.hello-msg{
+    font-size:20px;
+}
+
+body {
+    min-height: 130vh;
+    display: flex;
+    flex-direction: column;
+    margin:0;
+}
+
+.container{
+    margin-top:70px;
+    margin:5px;
+}

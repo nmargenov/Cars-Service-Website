@@ -1,0 +1,21 @@
+﻿@model WebAppUni.ViewModels.Home.LoginVM
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "Login";
+}
+
+<link rel="stylesheet" href="~/Styles/login-register-style.css">
+<main>
+    <form class="form-class" action="/Home/Login" method="post">
+        <div class="form-div">
+            <label>@Html.LabelFor(m => m.Username)</label>
+            <div>@Html.TextBoxFor(m => m.Username, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.Username)</p>
+            <label>@Html.LabelFor(m => m.Password)</label>
+            <div> @Html.PasswordFor(m => m.Password, new { @class ="field-class"})</div>
+            <p>@Html.ValidationMessageFor(m => m.Password)</p>
+            <p> @Html.ValidationMessage("authError", new { @style = "color:red" })</p>
+            <input class="submit-class" type="submit" value="Login">
+        </div>
+    </form>
+</main>

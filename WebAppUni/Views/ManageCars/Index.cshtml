@@ -1,0 +1,65 @@
+﻿@model WebAppUni.ViewModels.ManageCars.IndexVM
+@using WebAppUni.Entities
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "Cars";
+}
+
+<link rel="stylesheet" href="~/Styles/table-style.css">
+<div class="table-box">
+    <a class="new-item" href="/ManageCars/Create">Create Car</a>
+    <div class="table-row table-head">
+        <div class="table-cell first-cell">
+            <p>Added by</p>
+        </div>
+        <div class="table-cell">
+            <p>Car Brand</p>
+        </div>
+        <div class="table-cell">
+            <p>Car Model</p>
+        </div>
+        <div class="table-cell">
+            <p>Horsepower</p>
+        </div>
+        <div class="table-cell">
+            <p>Year of production</p>
+        </div>
+        <div class="table-cell">
+            <p>Is the vehicle running?</p>
+        </div>
+        <div class="table-cell last-cell">
+            <p>Action</p>
+        </div>
+    </div>
+
+    @foreach (Car car in Model.Cars)
+    {
+    <div class="table-row">
+        <div class="table-cell first-cell">
+            <p>@car.AddedByUser.FirstName @car.AddedByUser.LastName</p>
+        </div>
+        <div class="table-cell">
+            <p>@car.Brand</p>
+        </div>
+        <div class="table-cell">
+            <p>@car.Model</p>
+        </div>
+        <div class="table-cell">
+            <p>@car.HorsePower</p>
+        </div>
+        <div class="table-cell">
+            <p>@car.YearMade</p>
+        </div>
+        <div class="table-cell">
+            <p>@(car.IsRunning ? "Yes" : "No")</p>
+        </div>
+        <div class="table-cell last-cell">
+            <a class="butt" href="/Tasks/Index?id=@car.Id">Tasks</a>
+            <a class="butt" href="/ManageCars/Edit?id=@car.Id">Edit car</a>
+            <a class="butt" href="/ManageCars/Delete?id=@car.Id"
+               onclick="return confrim('Are you sure you want to delete @car.Brand @car.Model?')">Delete</a>
+
+        </div>
+    </div>
+    }
+</div>

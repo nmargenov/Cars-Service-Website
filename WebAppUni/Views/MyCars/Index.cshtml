@@ -1,0 +1,61 @@
+﻿@model WebAppUni.ViewModels.MyCars.IndexVM
+@using WebAppUni.Entities
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "My Cars";
+}
+
+<link rel="stylesheet" href="~/Styles/table-style.css">
+<div class="table-box">
+    <div class="table-row table-head">
+        <div class="table-cell first-cell">
+            <p>Car Brand</p>
+        </div>
+        <div class="table-cell">
+            <p>Car Model</p>
+        </div>
+        <div class="table-cell">
+            <p>Task</p>
+        </div>
+        <div class="table-cell-tasks-middle tasks-head">
+            <p>Description</p>
+        </div>
+        <div class="table-cell last-cell">
+            <p>Status</p>
+        </div>
+    </div>
+
+    @foreach (Task task in Model.Tasks)
+    {
+        <div class="table-row">
+            @foreach (Car car in Model.Cars.Where(c => c.Id == task.CarId))
+            {
+                <div class="table-cell first-cell">
+                    <p>@car.Brand</p>
+                </div>
+                <div class="table-cell">
+                    <p>@car.Model</p>
+                </div>
+            }
+           
+            <div class="table-cell">
+                <p>@task.Title</p>
+            </div>
+            <div class="table-cell-tasks-middle">
+                <p>@task.Description</p>
+            </div>   
+            <div class="table-cell last-cell">
+                @if (task.Status == 0)
+                {
+                    <a>In Progress</a>
+                    <a class="butt" href="/MyCars/Done?id=@task.Id">Mark as Done</a>
+                }
+                else
+                {
+                    @task.Status
+                }
+
+            </div>
+        </div>
+            }
+        </div>

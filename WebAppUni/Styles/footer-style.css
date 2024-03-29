@@ -1,0 +1,30 @@
+﻿footer {
+    text-align: center;
+    background-color: #001c4a;
+    color: white;
+    margin-top: auto;
+    height:150px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.footer-link {
+    font-size: 15px;
+    margin:3px;
+    color: #e3e3e3;
+}
+.author {
+    color: #b0b0b0;
+}
+.dot {
+    color: #e3e3e3;
+}
+.upper-links.div{
+    margin-top:15px;
+    padding-top:15px
+}

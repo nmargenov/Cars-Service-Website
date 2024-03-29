@@ -1,0 +1,32 @@
+﻿@model WebAppUni.ViewModels.Home.RegisterVM
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "Register";
+}
+
+<link rel="stylesheet" href="~/Styles/login-register-style.css">
+<main>
+    <form class="form-class" action="/Home/Register" method="post">
+        <div class="form-div">
+            <label>@Html.LabelFor(m => m.Username)</label>
+            <div>@Html.TextBoxFor(m => m.Username, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.Username)</p>
+            <label>@Html.LabelFor(m => m.Password)</label>
+            <div> @Html.PasswordFor(m => m.Password, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.Password)</p>
+            <label>@Html.LabelFor(m => m.ConfirmPassword)</label>
+            <div> @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.ConfirmPassword)</p>
+            <label>@Html.LabelFor(m => m.FirstName)</label>
+            <div> @Html.TextBoxFor(m => m.FirstName, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.FirstName)</p>
+            <label>@Html.LabelFor(m => m.LastName)</label>
+            <div> @Html.TextBoxFor(m => m.LastName, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.LastName)</p>
+
+            <p> @Html.ValidationMessage("usernameFound", new { @style = "color:red" })</p>
+            <p> @Html.ValidationMessage("differentPasswords", new { @style = "color:red" })</p>
+            <input class="submit-class" type="submit" value="Register">
+        </div>
+    </form>
+</main>

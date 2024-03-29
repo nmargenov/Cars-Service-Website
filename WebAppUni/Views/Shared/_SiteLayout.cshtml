@@ -1,0 +1,67 @@
+﻿@using WebAppUni.Entities;
+@{
+    User loggedUser = (User)Session["loggedUser"];
+}
+<html>
+<head>
+    <title>@ViewData["title"]</title>
+    <link href="~/Styles/header-style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="site-header">
+        <div class="left-section">
+            <a href="/Home/Index" class="site-name">PitStop AUTO</a>
+        </div>
+
+        <div class="middle-section">
+            <a href="/Home/Index" class="page">Home</a>
+            @if (loggedUser != null)
+            {
+                <a href="/MyProfile/Index" class="page">My Profile</a>
+            }@if (loggedUser != null && loggedUser.Role != WebAppUni.Entities.User.PermissionLevel.User)
+            {
+                <a href="/MyCars/Index" class="page">My Cars</a>
+            }
+            @if (loggedUser != null && loggedUser.Role == WebAppUni.Entities.User.PermissionLevel.Admin)
+            {
+                <a href="/Admin/Index" class="page">Admin Panel</a>
+                <a href="/ManageCars/Index" class="page">Manage Cars</a>
+            }
+        </div>
+        <div class="right-section">
+            <a class="hello-msg">Hello, @(loggedUser != null ? loggedUser.Username : "Guest")</a>
+            @if (loggedUser == null)
+            {
+                <a href="/Home/Login" class="page">Login</a>
+                <a href="/Home/Register" class="page">Register</a>
+            }
+            else
+            {
+                <a href="/Home/Logout" class="page">Logout</a>
+            }
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <link href="~/Styles/footer-style.css" rel="stylesheet" />
+        <div class="main-div">
+            <div class="upper-links-div">
+                <a href="/Home/Contact" class="footer-link">Contact us</a>
+                <a class="dot">&#x2022</a>
+                <a href="/Home/About" class="footer-link">About us</a>
+            </div>
+            <div>
+                <a href="/Home/Terms" class="footer-link">Terms of Use</a>
+                <a class="dot">&#x2022</a>
+                <a href="/Home/Policy" class="footer-link">Privacy Policy</a>
+            </div>
+            <div>
+                <p class="author">&#169; Made by Nikolay Margenov 2101561065 BIT</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿@model WebAppUni.ViewModels.Tasks.IndexVM
+@using WebAppUni.Entities;
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "Tasks";
+}
+<link rel="stylesheet" href="~/Styles/table-style.css">
+<div class="table-box">
+    <a class="new-item" href="/Tasks/Create?carId=@Model.Car.Id">Create task</a>
+    <div class="table-row table-head">
+        <div class="table-cell">
+            <p>@Model.Car.Brand @Model.Car.Model</p>
+        </div>
+    </div>
+    <div class="table-row table-head">
+        <div class="table-cell-tasks-first tasks-head">
+            <p>Title</p>
+        </div>
+        <div class="table-cell table-head">
+            <p>Asignee</p>
+        </div>
+        <div class="table-cell-tasks-middle tasks-head">
+            <p>Description</p>
+        </div>
+        <div class="table-cell tasks-head">
+            <p>Status</p>
+        </div>
+        <div class="table-cell-tasks-last">Action</div>
+
+    </div>
+
+    @foreach (WebAppUni.Entities.Task item in Model.Items)
+    { 
+        <div class="table-row">
+            <div class="table-cell-tasks-first">
+                <p>@item.Title</p>
+            </div>
+            <div class="table-cell">
+                <p>@item.Assignee.FirstName @item.Assignee.LastName</p>
+            </div>
+            <div class="table-cell-tasks-middle">
+                <p>@item.Description</p>
+            </div>
+            <div class="table-cell">
+                <p>
+                    @if (item.Status == 0)
+                    {
+                        <a>In Progress</a>
+                       
+                    }
+                    else
+                    {
+                        @item.Status
+                    }
+                </p>
+            </div>
+            <div class="table-cell-tasks-last">
+                <a class="butt" href="/Tasks/Edit?id=@item.Id">Edit</a>
+                <a class="butt" href="/Tasks/Delete?id=@item.Id"
+                   onclick="return confirm('Delete Record?');">Delete</a>
+
+            </div>
+        </div>
+    }
+</div>

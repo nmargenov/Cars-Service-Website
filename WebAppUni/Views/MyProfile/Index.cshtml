@@ -1,0 +1,52 @@
+﻿@model WebAppUni.ViewModels.MyProfile.IndexVM
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "My Profile";
+}
+<link rel="stylesheet" href="~/Styles/table-style.css">
+<div class="table-box">
+    <div class="table-row-myprofile table-head ">
+        <div class="table-cell">
+            <p>My Profile</p>
+        </div>
+    </div>
+    <div class="table-row-myprofile">
+        <div class="table-cell">
+            <p>Username</p>
+        </div>
+        <div class="table-cell">
+            <p>@Model.User.Username</p>
+        </div>
+    </div>
+    <div class="table-row-myprofile">
+        <div class="table-cell">
+            <p>First Name</p>
+        </div>
+        <div class="table-cell">
+            <p>@Model.User.FirstName</p>
+        </div>
+    </div>
+    <div class="table-row-myprofile">
+        <div class="table-cell">
+            <p>Last Name</p>
+        </div>
+        <div class="table-cell">
+            <p>@Model.User.LastName</p>
+        </div>
+    </div>
+    <div class="table-row-myprofile">
+        <div class="table-cell">
+            <p>Role</p>
+        </div>
+        <div class="table-cell">
+            <p>@Model.User.Role</p>
+        </div>
+    </div>
+    <div class="table-row-myprofile">
+        <div class="table-cell">
+            <a class="butt" href="/MyProfile/Edit?id=@Model.User.Id">Edit</a>
+            <a class="butt" href="/MyProfile/Delete?id=@Model.User.Id">Delete</a>
+
+        </div>
+    </div>
+</div>   

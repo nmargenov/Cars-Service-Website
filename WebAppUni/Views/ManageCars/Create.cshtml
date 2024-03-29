@@ -1,0 +1,29 @@
+﻿@model WebAppUni.ViewModels.ManageCars.AddCarVM
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "Add Car";
+}
+
+<link rel="stylesheet" href="~/Styles/login-register-style.css">
+<main>
+    <form class="form-class" action="/ManageCars/Create" method="post">
+        <div class="form-div">
+            <label>@Html.LabelFor(m => m.Brand)</label>
+            <div>@Html.TextBoxFor(m => m.Brand, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.Brand)</p>
+            <label>@Html.LabelFor(m => m.CarModel)</label>
+            <div> @Html.TextBoxFor(m => m.CarModel, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.CarModel)</p>
+            <label>@Html.LabelFor(m => m.HorsePower)</label>
+            <div> @Html.TextBoxFor(m => m.HorsePower, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.HorsePower)</p>
+            <label>@Html.LabelFor(m => m.YearMade)</label>
+            <div> @Html.TextBoxFor(m => m.YearMade, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.YearMade)</p>
+            <label>@Html.LabelFor(m => m.IsRunning)</label>
+            <div> @Html.CheckBoxFor(m => m.IsRunning, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.IsRunning)</p>
+            <input class="submit-class" type="submit" value="Create Car">
+        </div>
+    </form>
+</main>

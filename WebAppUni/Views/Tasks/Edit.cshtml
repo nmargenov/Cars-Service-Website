@@ -1,0 +1,42 @@
+﻿@model WebAppUni.ViewModels.Tasks.EditVM
+@using WebAppUni.Entities;
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "Edit Task";
+
+    User loggedUser = (User)Session["loggedUser"];
+}
+
+<link rel="stylesheet" href="~/Styles/login-register-style.css">
+<main>
+    <form class="form-class" action="/Tasks/Edit" method="post">
+        <div class="form-div">
+            @Html.HiddenFor(m => m.CarId)
+            @Html.HiddenFor(m => m.OwnerId)
+            @Html.HiddenFor(m => m.Id)
+            <label>@Html.LabelFor(m => m.AssigneeId)</label>
+            <div>
+                <select name="AssigneeId">
+                    @foreach (User user in Model.Users)
+                    {
+                        <option value="@user.Id" @(user.Id == loggedUser.Id ? "selected" : "")>
+                            @user.Username (@user.FirstName @user.LastName)
+                        </option>
+                    }
+                </select>
+            </div>
+
+
+            <label>@Html.LabelFor(m => m.Title)</label>
+            <div> @Html.TextBoxFor(m => m.Title, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.Title)</p>
+
+            <label>@Html.LabelFor(m => m.Description)</label>
+            <div> @Html.TextBoxFor(m => m.Description, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.Description)</p>
+
+            <p> @Html.ValidationMessage("invalidUser", new { @style = "color:red" })</p>
+            <input class="submit-class" type="submit" value="Save">
+        </div>
+    </form>
+</main>

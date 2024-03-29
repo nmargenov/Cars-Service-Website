@@ -1,0 +1,39 @@
+﻿@model WebAppUni.ViewModels.MyProfile.EditVM
+@{
+    this.Layout = "/Views/Shared/_SiteLayout.cshtml";
+    ViewData["title"] = "Edit My Profile";
+}
+
+<link rel="stylesheet" href="~/Styles/login-register-style.css">
+<main>
+    <form class="form-class" action="/MyProfile/Edit" method="post">
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.passwordCheck)
+        @Html.HiddenFor(m => m.Role)
+        <div class="form-div">
+            <label>@Html.LabelFor(m => m.Username)</label>
+            <div>@Html.TextBoxFor(m => m.Username, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.Username)</p>
+            <label>@Html.LabelFor(m => m.OldPassword)</label>
+            <div> @Html.PasswordFor(m => m.OldPassword, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.OldPassword)</p>
+            <label>@Html.LabelFor(m => m.NewPassword)</label>
+            <div> @Html.PasswordFor(m => m.NewPassword, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.NewPassword)</p>
+            <label>@Html.LabelFor(m => m.ConfirmNewPassword)</label>
+            <div> @Html.PasswordFor(m => m.ConfirmNewPassword, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.ConfirmNewPassword)</p>
+            <label>@Html.LabelFor(m => m.FirstName)</label>
+            <div> @Html.TextBoxFor(m => m.FirstName, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.FirstName)</p>
+            <label>@Html.LabelFor(m => m.LastName)</label>
+            <div> @Html.TextBoxFor(m => m.LastName, new { @class = "field-class" })</div>
+            <p>@Html.ValidationMessageFor(m => m.LastName)</p>
+
+            @Html.ValidationMessage("oldPasswordNotMatch", new { @style = "color:red" })
+            @Html.ValidationMessage("usernameFound", new { @style = "color:red" })
+            @Html.ValidationMessage("newPasswordNotMatch", new { @style = "color:red" })
+            <input class="submit-class" type="submit" value="Save">
+        </div>
+    </form>
+</main>
